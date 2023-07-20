@@ -10,7 +10,7 @@ from app.models.other import Product, Category, Comment
 def index_view(request):
     products = Product.objects.order_by('-created_at')
     laptops = Product.objects.filter(category__title='laptop').all()
-    tvs = Product.objects.filter(category_id=4).all()
+    tvs = Product.objects.filter(category__title='TV').all()
     best_products = Product.objects.order_by('-price')
     return render(request=request,
                   template_name='app/index.html',

@@ -10,12 +10,11 @@ from app.models.other import Product
 def add_shopping_view(request, product_id):
     product = get_object_or_404(klass=Product, pk=product_id)
 
-    if request.method == "POST":
-        quantity = request.POST['quantity']
-        shopping, created = ShoppingCart.objects.get_or_create(user=request.user)
-        shopping.quantity = quantity
-        shopping.product.add(product)
-        return redirect('shopping-cart')
+    # quantity = request.POST['quantity']
+    shopping, created = ShoppingCart.objects.get_or_create(user=request.user)
+    # shopping.quantity = quantity
+    shopping.product.add(product)
+    return redirect('shopping-cart')
 
 
 @login_required(login_url='login')
